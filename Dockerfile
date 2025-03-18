@@ -19,11 +19,11 @@ RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
 && rm google-chrome-stable_current_amd64.deb
 
 # Install chromedriver
-RUN wget https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip \
-&& unzip chromedriver_linux64.zip \
-&& mv chromedriver /usr/bin/chromedriver \
+RUN wget https://storage.googleapis.com/chrome-for-testing-public/134.0.6998.88/linux64/chromedriver-linux64.zip \
+&& unzip chromedriver-linux64.zip \
+&& mv ./chromedriver-linux64/chromedriver /usr/bin/chromedriver \
 && chmod +x /usr/bin/chromedriver \
-&& rm chromedriver_linux64.zip
+&& rm chromedriver-linux64.zip
 
 RUN pip install --no-cache-dir -r requirements.txt
 

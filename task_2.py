@@ -27,6 +27,8 @@ def browser_init(url: str, expected_loaded_object_xpath: XPath | str) -> webdriv
     """
     opts = Options()
     opts.add_argument("--headless=new")
+    opts.add_argument("--user-data-dir=/tmp/user-data")
+    opts.add_argument("--no-sandbox")
     opts.add_argument("user-agent=Mozilla/5.0")
     browser = webdriver.Chrome(options=opts)
     l.info(f"Requesting page: {url}")
@@ -144,4 +146,4 @@ def main(url="") -> dict:
 
 
 if __name__ == "__main__":
-    main("https://www.tiendasjumbo.co/supermercado/despensa/enlatados-y-conservas")
+    print(main("https://www.tiendasjumbo.co/supermercado/despensa/enlatados-y-conservas"))
