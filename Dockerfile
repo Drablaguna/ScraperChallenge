@@ -1,4 +1,4 @@
-FROM python:3
+FROM ubuntu:24.04
 
 COPY ./requirements.txt /app/requirements.txt
 
@@ -6,27 +6,31 @@ WORKDIR /app
 
 COPY . /app
 
+# Install requests dependencies
+RUN apt-get update && apt-get install -y \
+wget \
+gnupg \
+lsb-release \
+unzip
+
+# Add chrome repo
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+&& apt-get install ./google-chrome-stable_current_amd64.deb -y \
+&& rm google-chrome-stable_current_amd64.deb
+
+# Install pip
+RUN apt-get update && apt-get install -y \
+    python3-pip
+
+# Install chromedriver
+RUN wget https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip \
+&& unzip chromedriver_linux64.zip \
+&& mv chromedriver /usr/bin/chromedriver \
+&& chmod +x /usr/bin/chromedriver \
+&& rm chromedriver_linux64.zip
+
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN apt-get update && apt-get install -y \
-    libgconf-2-4 \
-    libatk1.0-0 \
-    libatk-bridge2.0-0 \
-    libcups2 \
-    libdrm2 \
-    libxkbcommon0 \
-    libxcomposite1 \
-    libxdamage1 \
-    libxfixes3 \
-    libxrandr2 \
-    libgbm1 \
-    fonts-liberation \
-    xdg-utils \
-    wget \
-    unzip
-
-RUN chmod +x ./chromedriver
-
-ENV PATH="/app:${PATH}"
+# ENV PATH="/app:${PATH}"
 
 CMD [ "python", "./api.py" ]

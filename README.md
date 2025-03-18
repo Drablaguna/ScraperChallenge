@@ -51,13 +51,23 @@ propiedades de un archivo JSON:
 
 ### Ejecución
 
+Con Docker
+
 1. En consola, navegar al directorio raíz del proyecto y ejecutar el siguiente comando: `docker build -t scraper-api-img .`
 1. Ejecutar el siguiente comando para correr la app en un contenedor: `docker run -d -p 8080:8080 --name scraper-api-cnt scraper-api-img`
 1. Con un cliente para llamadas a APIs como Postman o un navegador, solicitar la URL: `http://127.0.0.1:8080/task-1`
 1. Esperar a obtener el resultado en JSON
 
+Sin Docker
+
+1. En una consola en el directorio raíz del proyecto ejecutar `pip install requirements.txt`
+1. Ejecutar `api.py` en la consola
+1. Con un cliente para llamadas a APIs como Postman o un navegador, solicitar la URL: `http://127.0.0.1:8080/task-1`
+1. Esperar a obtener el resultado en JSON
+
 ### Notas
-- En varios casos el JSON original tiene valores numéricos como cadenas de texto, utilizo la función `numeric_cast()` y expresiones regulares para poder transformar el texto a int o float según sea el caso. Implementé el paso de transformación para igualar los valores numéricos a los valores del JSON esperado, pero este paso de limpieza podría dejarse para otro procesamiento futuro y concentrarse en extraer la información cruda solamente.
+
+-   En varios casos el JSON original tiene valores numéricos como cadenas de texto, utilizo la función `numeric_cast()` y expresiones regulares para poder transformar el texto a int o float según sea el caso. Implementé el paso de transformación para igualar los valores numéricos a los valores del JSON esperado, pero este paso de limpieza podría dejarse para otro procesamiento futuro y concentrarse en extraer la información cruda solamente.
 
 ## Tarea 2
 
@@ -67,20 +77,27 @@ productos. Incluye un Dockerfile.
 
 ### Ejecución
 
+Con Docker
+
 1. En consola, navegar al directorio raíz del proyecto y ejecutar el siguiente comando: `docker build -t scraper-api-img .`
 1. Ejecutar el siguiente comando para correr la app en un contenedor: `docker run -d -p 8080:8080 --name scraper-api-cnt scraper-api-img`
 1. Con un cliente para llamadas a APIs como Postman o un navegador, solicitar la URL: `http://127.0.0.1:8080/task-2?url=URL_A_PROBAR`
-Reemplazar `URL_A_PROBAR` con alguna de las siguientes URLs:
-    - https://www.tiendasjumbo.co/supermercado/despensa/enlatados-y-conservas
-    - https://www.tiendasjumbo.co/supermercado/despensa/harinas-y-mezclas-para-preparar
-    - https://www.tiendasjumbo.co/supermercado/despensa/bebida-achocolatada-en-polvo
-    - https://www.tiendasjumbo.co/supermercado/despensa/aceite
+   Reemplazar `URL_A_PROBAR` con alguna de las siguientes URLs: - https://www.tiendasjumbo.co/supermercado/despensa/enlatados-y-conservas - https://www.tiendasjumbo.co/supermercado/despensa/harinas-y-mezclas-para-preparar - https://www.tiendasjumbo.co/supermercado/despensa/bebida-achocolatada-en-polvo - https://www.tiendasjumbo.co/supermercado/despensa/aceite
+1. Esperar a obtener el resultado en JSON
+
+Sin Docker
+
+1. En una consola en el directorio raíz del proyecto ejecutar `pip install requirements.txt`
+1. Ejecutar `api.py` en la consola
+1. Con un cliente para llamadas a APIs como Postman o un navegador, solicitar la URL: `http://127.0.0.1:8080/task-2?url=URL_A_PROBAR`
+   Reemplazar `URL_A_PROBAR` con alguna de las siguientes URLs: - https://www.tiendasjumbo.co/supermercado/despensa/enlatados-y-conservas - https://www.tiendasjumbo.co/supermercado/despensa/harinas-y-mezclas-para-preparar - https://www.tiendasjumbo.co/supermercado/despensa/bebida-achocolatada-en-polvo - https://www.tiendasjumbo.co/supermercado/despensa/aceite
 1. Esperar a obtener el resultado en JSON
 
 ### Notas
-- Se utiliza `selenium` por que el sitio no maneja paginación en la URL, siendo necesario una manera de poder "presionar el botón de siguiente" y obtener el siguiente set de resultados.
-    - Es posible poder utilizar la API de Tiendas Jumbo directamente para extraer la información, pero requeriría de ingeniería inversa del sitio trazando sus peticiones y la API a la cual el sitio solicita su información.
-- Si bien existen muchos tipos de selectores de elementos HTML, `XPath` fue escogido por su poder de búsqueda, amplia gama de selectores y legibilidad.
-- La extracción puede ser lenta principalmente por los tiempos del carga del sitio, ya que la UI tarda un poco en "hidratarse" cargando los productos.
-    - La velocidad de carga puede afectarse por que la implementación hace un zoom del 10% a la página para cargar todos los productos de la página, en caso contrario se necesitaría lógica compleja de JS para hacer scroll en el sitio, ya que los productos son cargados dinamicamente conforme el usuario haga scroll en el sitio.
-- Existen casos donde hay productos con varios precios de oferta/descuento, la implementación retorna solamente el precio más bajo.
+
+-   Se utiliza `selenium` por que el sitio no maneja paginación en la URL, siendo necesario una manera de poder "presionar el botón de siguiente" y obtener el siguiente set de resultados.
+    -   Es posible poder utilizar la API de Tiendas Jumbo directamente para extraer la información, pero requeriría de ingeniería inversa del sitio trazando sus peticiones y la API a la cual el sitio solicita su información.
+-   Si bien existen muchos tipos de selectores de elementos HTML, `XPath` fue escogido por su poder de búsqueda, amplia gama de selectores y legibilidad.
+-   La extracción puede ser lenta principalmente por los tiempos del carga del sitio, ya que la UI tarda un poco en "hidratarse" cargando los productos.
+    -   La velocidad de carga puede afectarse por que la implementación hace un zoom del 10% a la página para cargar todos los productos de la página, en caso contrario se necesitaría lógica compleja de JS para hacer scroll en el sitio, ya que los productos son cargados dinamicamente conforme el usuario haga scroll en el sitio.
+-   Existen casos donde hay productos con varios precios de oferta/descuento, la implementación retorna solamente el precio más bajo.
