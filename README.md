@@ -82,7 +82,11 @@ Con Docker
 1. En consola, navegar al directorio raíz del proyecto y ejecutar el siguiente comando: `docker build -t scraper-api-img .`
 1. Ejecutar el siguiente comando para correr la app en un contenedor: `docker run -d -p 8080:8080 --name scraper-api-cnt scraper-api-img`
 1. Con un cliente para llamadas a APIs como Postman o un navegador, solicitar la URL: `http://127.0.0.1:8080/task-2?url=URL_A_PROBAR`
-   Reemplazar `URL_A_PROBAR` con alguna de las siguientes URLs: - https://www.tiendasjumbo.co/supermercado/despensa/enlatados-y-conservas - https://www.tiendasjumbo.co/supermercado/despensa/harinas-y-mezclas-para-preparar - https://www.tiendasjumbo.co/supermercado/despensa/bebida-achocolatada-en-polvo - https://www.tiendasjumbo.co/supermercado/despensa/aceite
+   Reemplazar `URL_A_PROBAR` con alguna de las siguientes URLs:
+    - https://www.tiendasjumbo.co/supermercado/despensa/enlatados-y-conservas
+    - https://www.tiendasjumbo.co/supermercado/despensa/harinas-y-mezclas-para-preparar
+    - https://www.tiendasjumbo.co/supermercado/despensa/bebida-achocolatada-en-polvo
+    - https://www.tiendasjumbo.co/supermercado/despensa/aceite
 1. Esperar a obtener el resultado en JSON
 
 Sin Docker
@@ -90,7 +94,11 @@ Sin Docker
 1. En una consola en el directorio raíz del proyecto ejecutar `pip install requirements.txt`
 1. Ejecutar `api.py` en la consola
 1. Con un cliente para llamadas a APIs como Postman o un navegador, solicitar la URL: `http://127.0.0.1:8080/task-2?url=URL_A_PROBAR`
-   Reemplazar `URL_A_PROBAR` con alguna de las siguientes URLs: - https://www.tiendasjumbo.co/supermercado/despensa/enlatados-y-conservas - https://www.tiendasjumbo.co/supermercado/despensa/harinas-y-mezclas-para-preparar - https://www.tiendasjumbo.co/supermercado/despensa/bebida-achocolatada-en-polvo - https://www.tiendasjumbo.co/supermercado/despensa/aceite
+   Reemplazar `URL_A_PROBAR` con alguna de las siguientes URLs:
+    - https://www.tiendasjumbo.co/supermercado/despensa/enlatados-y-conservas
+    - https://www.tiendasjumbo.co/supermercado/despensa/harinas-y-mezclas-para-preparar
+    - https://www.tiendasjumbo.co/supermercado/despensa/bebida-achocolatada-en-polvo
+    - https://www.tiendasjumbo.co/supermercado/despensa/aceite
 1. Esperar a obtener el resultado en JSON
 
 ### Notas
